@@ -1,5 +1,7 @@
 //: ## A Swift 2.0 Introduction to some `NSManagedObjectContext` subtleties
 //:
+//: Go [in this repo](https://github.com/Liquidsoul/coredata-saving-contexts) if you'd like to see this live in a playground!
+//:
 //: ### Introduction
 //:
 //: I am quite new at using Core Data.
