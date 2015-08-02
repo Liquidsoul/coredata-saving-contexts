@@ -8,7 +8,7 @@ public class Person: NSManagedObject {
 	@NSManaged public var wage: NSNumber
 
 	override public var description: String {
-		return "name: \(name)\nwage: \(wage)"
+		return "name: \(name) wage: \(wage)"
 	}
 }
 

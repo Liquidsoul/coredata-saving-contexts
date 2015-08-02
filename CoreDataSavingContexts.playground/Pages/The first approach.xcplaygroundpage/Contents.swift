@@ -46,9 +46,9 @@ try childContext.save()
 //: let's check that we have the new content in the main context using a fetch request:
 let results = try mainContext.executeFetchRequest(NSFetchRequest(entityName: "Person"))
 if let createdPerson = results.first as? Person {
-	print(createdPerson)
+	print(createdPerson)	// "name: John wage:1000"
 } else {
-	print("Noone there!");
+	print("Noone there!")
 }
 
 //: Yes! Everything seems ok.
@@ -61,7 +61,7 @@ secondLaunchMainContext.persistentStoreCoordinator = persistentStoreCoordinator
 if let createdPerson = try secondLaunchMainContext.executeFetchRequest(NSFetchRequest(entityName: "Person")).first as? Person {
 	print(createdPerson)
 } else {
-	print("Noone there!");
+	print("Noone there!")	// "Noone there!"
 }
 
 //: Wait, what? There is no data? What happened?
