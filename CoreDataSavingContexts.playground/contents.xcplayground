@@ -3,5 +3,6 @@
     <pages>
         <page name='The first approach'/>
         <page name='Fixing our first approach'/>
+        <page name='Targeted saving'/>
     </pages>
 </playground>
