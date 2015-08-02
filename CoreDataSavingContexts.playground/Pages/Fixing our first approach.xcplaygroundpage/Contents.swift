@@ -1,3 +1,5 @@
+//: [Previous](@previous)
+
 //: ### Fixing our first approach
 //:
 
@@ -49,3 +51,5 @@ if let createdPerson = try secondLaunchMainContext.executeFetchRequest(fetchRequ
 //: Yet, this seems coherent with the fact that, as we've performed a `save()` on the main context, *all* objects it contains are saved.
 //:
 //: So what can we do if we only want to save John without saving Billy?
+
+//: [Next](@next)
