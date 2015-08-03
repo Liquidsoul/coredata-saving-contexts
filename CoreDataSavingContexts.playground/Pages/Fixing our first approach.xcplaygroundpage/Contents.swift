@@ -1,6 +1,6 @@
 //: [Previous](@previous)
 
-//: ### Fixing our first approach
+//: ## Fixing our first approach
 //:
 
 //: So, we have our initial setup.

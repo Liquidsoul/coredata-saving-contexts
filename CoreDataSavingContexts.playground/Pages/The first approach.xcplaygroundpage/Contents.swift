@@ -1,8 +1,8 @@
-//: ## A Swift 2.0 Introduction to some `NSManagedObjectContext` subtleties
+//: # Saving CoreData objects
 //:
-//: Go [in this repo](https://github.com/Liquidsoul/coredata-saving-contexts) if you'd like to see this live in a playground!
+//: The associated playground can be found [in this repo](https://github.com/Liquidsoul/coredata-saving-contexts)!
 //:
-//: ### Introduction
+//: ## Introduction
 //:
 //: I am quite new at using Core Data.
 //: I have started to use it just a few months back, and I've been using it extensively the last couple of month.
@@ -22,7 +22,7 @@
 //:  * we've got a main context that is used by our controllers
 //:  * we want to refresh our data using server requests and store it asynchronously to Core Data (server requests are another topic so we will skip this part)
 
-//: ### The first approach
+//: ## The first approach
 //: To get started quickly with our topic, let's perform the heavy lifting of creating the model and persistent store coordinator behind the scene:
 
 import CoreData

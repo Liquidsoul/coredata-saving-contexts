@@ -1,6 +1,6 @@
 //: [Previous](@previous)
 
-//: ### Targeted saving
+//: ## Targeted saving
 //:
 //: So, as before, our main context with our "Billy"
 
@@ -43,7 +43,7 @@ if let createdPerson = try secondLaunchMainContext.executeFetchRequest(fetchRequ
 
 //: We did it!
 //:
-//: ### Conclusion
+//: ## Conclusion
 //: 
 //: We learned that:
 //: * calling `save()` on a context will only send changes one step up the hierarchy
