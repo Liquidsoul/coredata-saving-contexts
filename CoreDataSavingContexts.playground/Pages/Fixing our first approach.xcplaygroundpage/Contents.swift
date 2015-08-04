@@ -20,7 +20,9 @@ let childContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrency
 childContext.parentContext = mainContext
 let person = addPersonToContext(childContext, name: "John")
 
-//: Now, as we've learned before, we save our content from the child to the main context[1]:
+//: Now, as we've learned before, we save our content from the child to the main context[^2]:
+//:
+//: [^2]: as told before[^1], don't forget to use `performBlock()` to call CoreData context code
 try childContext.save()
 try mainContext.save()
 
