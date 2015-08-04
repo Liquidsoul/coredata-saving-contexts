@@ -2,7 +2,7 @@
 
 //: ## Confined save
 //:
-//: So, as before, our main context with our "Billy"
+//: Let's do it again, we setup our main context with "Billy"
 
 import CoreData
 
@@ -11,8 +11,8 @@ let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyT
 mainContext.persistentStoreCoordinator = persistentStoreCoordinator
 let ourOtherPerson = addPersonToContext(mainContext, name: "Billy")
 
-//: Therefore, to prevent "Billy" to be saved while we just wanted to save "John", we will not create our editing context from the main one.
-//: We will create what I call a *sibling* context which share the same store as the main one:
+//: Then, to prevent "Billy" to be saved while we just wanted to save "John", we will not create our editing context as a child of the main.
+//: We will create what we'll call a *sibling* context. These are contexts that share the same persitent store coordinator:
 
 let siblingContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 siblingContext.persistentStoreCoordinator = persistentStoreCoordinator
@@ -45,10 +45,14 @@ if let createdPerson = try secondLaunchMainContext.executeFetchRequest(fetchRequ
 //:
 //: ## Conclusion
 //: 
-//: We learned that:
+//: Here, we learned that:
 //: 
 //: * calling `save()` on a context will only send changes one step up the hierarchy
 //: * `save()` will commit changes contained in the whole context
 //:
-//: As a side note: for the sake of simplicity here, we have only worked with entity insertion.
+//: I hope that this may help anyone who did not yet grasp how Core Data save its content throught contexts.
+//:
+//:
+//: __As a side note__: for the sake of simplicity here, we have only worked with entity insertion.
 //: When you start playing with entity attributes, you'll need to perform some `refreshObject()` calls to see the saved values in other contexts.
+//:

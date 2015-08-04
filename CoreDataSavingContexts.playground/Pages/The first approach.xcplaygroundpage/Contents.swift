@@ -9,7 +9,7 @@
 //: During this time, I have learned some things about `NSManagedObjectContext` that I want to share.
 //: Here, I'll be explaining how the saving mechanism works with multiple contexts created using different methods.
 //:
-//: We'll be working with very basic Core Data model which will contain only one single entity.
+//: We'll be working with a very basic Core Data model which will contain only one single entity.
 //:
 //:		+-----------------+
 //:		| Person          |
@@ -22,31 +22,27 @@
 //:  * we want to refresh our data using server requests and store it asynchronously to Core Data (server requests are another topic so we will skip this part)
 
 //: ## The first approach
-//: To get started quickly with our topic, let's perform the heavy lifting of creating the model and persistent store coordinator behind the scene:
+//: To get started quickly with our topic, the heavy lifting of creating the model and persistent store coordinator will be done behind the scene[^1]:
 
 import CoreData
 
 let persistentStoreCoordinator = try createPersistentStoreCoordinator()
 
-//: So now, back to our topic.
-//:
-//: So let's setup our main context:
+//: Now that we have our persistentStoreCoordinator, we create our main context:
 let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 mainContext.persistentStoreCoordinator = persistentStoreCoordinator
 
-//: As we want to share data between contexts, let's create a child context for our background update:
+//: As we want to share data between the two contexts, we create a child context for our background update:
 let childContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 childContext.parentContext = mainContext
 
-//: Let's create a new entity in the child context as if it came from the server:
+//: Then, we create a new entity in the child context as if it came from the server[^1]:
 let person = addPersonToContext(childContext, name: "John")
 
-//: Now we save our content [^1]:
-//:
-//: [^1]: Note that you should use `performBlock()` to execute calls on a `NSManagedObjectContext` to ensure that the correct thread is using it.
+//: Now we save our content[^2]:
 try childContext.save()
 
-//: let's check that we have the new content in the main context using a fetch request:
+//: Let's check that we have the new content in the main context using a fetch request:
 let results = try mainContext.executeFetchRequest(NSFetchRequest(entityName: "Person"))
 if let createdPerson = results.first as? Person {
 	print(createdPerson)	// "name: John"
@@ -77,11 +73,16 @@ if let createdPerson = try secondLaunchMainContext.executeFetchRequest(NSFetchRe
 //:
 //: This can be misleading. When one see `parent store` he can understand `the parent persitent store of my context hierarchy`.
 //: However, what is meant by `parent store` is either:
+//:
 //: * the persistentStoreCoordinator
 //: * the parentContext
 //:
 //: So, if your context was setup with a parent context, changes are commited to his parent but no further.
-//: To save it to the persistent store, you'll need to performs `save()` calls on context all the way up in the hierarchy.
+//: To save it to the persistent store, you'll need to call `save()` on contexts all the way up in the hierarchy until you reach the persistent store.
+//:
 
+//: [^1]: `createPersistentStoreCoordinator` and `addPersonToContext` are helper functions to shorten the code in the article. You can find the code [here] [CoreDataSetup]
+//: [^2]: Note that you should use `performBlock()` to execute calls on a `NSManagedObjectContext` to ensure that the correct thread is using it.
+//: [CoreDataSetup]: https://github.com/Liquidsoul/coredata-saving-contexts/blob/master/CoreDataSavingContexts.playground/Sources/CoreDataSetup.swift
 
 //: [Next](@next)
