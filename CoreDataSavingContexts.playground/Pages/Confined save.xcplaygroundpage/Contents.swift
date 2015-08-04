@@ -1,6 +1,6 @@
 //: [Previous](@previous)
 
-//: ## Targeted saving
+//: ## Confined save
 //:
 //: So, as before, our main context with our "Billy"
 
