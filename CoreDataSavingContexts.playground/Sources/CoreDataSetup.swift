@@ -5,10 +5,9 @@ import CoreData
 
 public class Person: NSManagedObject {
 	@NSManaged public var name: NSString
-	@NSManaged public var wage: NSNumber
 
 	override public var description: String {
-		return "name: \(name) wage: \(wage)"
+		return "name: \(name)"
 	}
 }
 
@@ -25,15 +24,8 @@ func createModel() -> NSManagedObjectModel {
 	personNameAttributeDescription.optional = false
 	personNameAttributeDescription.indexed = false
 
-	//: and the `wage` attribute description:
-	let personWageAttributeDescription = NSAttributeDescription()
-	personWageAttributeDescription.name = "wage"
-	personWageAttributeDescription.attributeType = .FloatAttributeType
-	personWageAttributeDescription.optional = false
-	personWageAttributeDescription.indexed = false
-
 	//: Then, we assign our attributes to the entity description:
-	personEntityDescription.properties = [personNameAttributeDescription, personWageAttributeDescription]
+	personEntityDescription.properties = [personNameAttributeDescription]
 
 	//: Finally, we instanciate the model object and add our entity:
 	let model = NSManagedObjectModel()
@@ -52,9 +44,8 @@ public func createPersistentStoreCoordinator() throws -> NSPersistentStoreCoordi
 	return persistentStoreCoordinator
 }
 
-public func addPersonToContext(context: NSManagedObjectContext, name: String, wage: Float) -> Person {
+public func addPersonToContext(context: NSManagedObjectContext, name: String) -> Person {
 	let person = NSEntityDescription.insertNewObjectForEntityForName("Person", inManagedObjectContext: context) as! Person
 	person.name = name
-	person.wage = wage
 	return person
 }

@@ -9,14 +9,14 @@ import CoreData
 let persistentStoreCoordinator = try createPersistentStoreCoordinator()
 let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 mainContext.persistentStoreCoordinator = persistentStoreCoordinator
-let ourOtherPerson = addPersonToContext(mainContext, name: "Billy", wage: 2000)
+let ourOtherPerson = addPersonToContext(mainContext, name: "Billy")
 
 //: Therefore, to prevent "Billy" to be saved while we just wanted to save "John", we will not create our editing context from the main one.
 //: We will create what I call a *sibling* context which share the same store as the main one:
 
 let siblingContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 siblingContext.persistentStoreCoordinator = persistentStoreCoordinator
-let person = addPersonToContext(siblingContext, name: "John", wage: 1000)
+let person = addPersonToContext(siblingContext, name: "John")
 
 //: Now, all we have to do is save the sibling context:
 try siblingContext.save()
@@ -25,7 +25,7 @@ try siblingContext.save()
 let fetchRequest = NSFetchRequest(entityName: "Person")
 fetchRequest.predicate = NSPredicate(format:"%K like %@", "name", "John")
 if let createdPerson = try mainContext.executeFetchRequest(fetchRequest).first as? Person {
-	print(createdPerson)	// "name: John wage:1000"
+	print(createdPerson)	// "name: John"
 } else {
 	print("Noone there!")
 }
@@ -36,9 +36,9 @@ secondLaunchMainContext.persistentStoreCoordinator = persistentStoreCoordinator
 
 fetchRequest.predicate = NSPredicate(format:"%K like %@", "name", "Billy")
 if let createdPerson = try secondLaunchMainContext.executeFetchRequest(fetchRequest).first as? Person {
-	print(createdPerson)	// "name: Billy wage:2000"
+	print(createdPerson)
 } else {
-	print("Noone there!")
+	print("Noone there!")	// "Noone there!"
 }
 
 //: We did it!

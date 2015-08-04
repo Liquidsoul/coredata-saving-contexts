@@ -15,7 +15,6 @@
 //:		| Person          |
 //:		+-----------------+
 //:		| name            |
-//:		| wage            |
 //:		+-----------------+
 //:
 //: Here is our context:
@@ -40,7 +39,7 @@ let childContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrency
 childContext.parentContext = mainContext
 
 //: Let's create a new entity in the child context as if it came from the server:
-let person = addPersonToContext(childContext, name: "John", wage: 1000)
+let person = addPersonToContext(childContext, name: "John")
 
 //: Now we save our content [1]:
 //: [1]: Note that you should use `performBlock()` to execute calls on a `NSManagedObjectContext` to ensure that the correct thread is using it.
@@ -49,7 +48,7 @@ try childContext.save()
 //: let's check that we have the new content in the main context using a fetch request:
 let results = try mainContext.executeFetchRequest(NSFetchRequest(entityName: "Person"))
 if let createdPerson = results.first as? Person {
-	print(createdPerson)	// "name: John wage:1000"
+	print(createdPerson)	// "name: John"
 } else {
 	print("Noone there!")
 }
