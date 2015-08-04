@@ -72,7 +72,8 @@ if let createdPerson = try secondLaunchMainContext.executeFetchRequest(NSFetchRe
 //: Here is the first important lesson to learn.
 //: Let's have a look at the official documentation of `save()`:
 //:
-//: 	Attempts to commit unsaved changes to registered objects to the receiver’s parent store.
+//: 	Attempts to commit unsaved changes to registered objects to the receiver’s
+//:		parent store.
 //:
 //: This can be misleading. When one see `parent store` he can understand `the parent persitent store of my context hierarchy`.
 //: However, what is meant by `parent store` is either:
