@@ -5,11 +5,11 @@
 //: ## Introduction
 //:
 //: I am quite new at using Core Data.
-//: I have started to use it just a few months back, and I've been using it extensively the last couple of month.
+//: I have started to use it just a few months back, and I've been using it extensively the last couple of months.
 //: During this time, I have learned some things about `NSManagedObjectContext` that I want to share.
-//: Here, I'll be explaining how the saving mechanism works with multiple contexts created using different methods.
+//: Here, I'll explain how the saving mechanism works with multiple contexts created using different methods.
 //:
-//: We'll be working with a very basic Core Data model which will contain only one single entity.
+//: We'll work with a very basic Core Data model which will contain only one single entity.
 //:
 //:		+-----------------+
 //:		| Person          |

@@ -11,7 +11,7 @@ let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyT
 mainContext.persistentStoreCoordinator = persistentStoreCoordinator
 let ourOtherPerson = addPersonToContext(mainContext, name: "Billy")
 
-//: Then, to prevent "Billy" to be saved while we just wanted to save "John", we will not create our editing context as a child of the main.
+//: Then, to prevent "Billy" to be saved while we just want to save "John", we will not create our editing context as a child of the main.
 //: We will create what we'll call a *sibling* context. These are contexts that share the same persitent store coordinator:
 
 let siblingContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)

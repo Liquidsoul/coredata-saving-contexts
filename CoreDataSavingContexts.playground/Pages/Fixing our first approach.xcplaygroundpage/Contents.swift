@@ -11,7 +11,7 @@ let persistentStoreCoordinator = try createPersistentStoreCoordinator()
 let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 mainContext.persistentStoreCoordinator = persistentStoreCoordinator
 
-//: But to spice it a little, let's create another entity that will be living in the main context.
+//: But to spice it a little, let's create another entity that will exist in the main context.
 //: For example, this entity could've come from another child context:
 let ourOtherPerson = addPersonToContext(mainContext, name: "Billy")
 
