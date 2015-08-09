@@ -54,5 +54,5 @@ if let createdPerson = try secondLaunchMainContext.executeFetchRequest(fetchRequ
 //:
 //:
 //: __As a side note__: for the sake of simplicity here, we have only worked with entity insertion.
-//: When you start playing with entity attributes, you'll need to perform some `refreshObject()` calls to see the saved values in other contexts.
+//: When you start playing with entity attributes, you'll need to perform some [`refreshObject(_:mergeChanges:)`](https://developer.apple.com/library/prerelease/ios/documentation/Cocoa/Reference/CoreDataFramework/Classes/NSManagedObjectContext_Class/index.html#//apple_ref/occ/instm/NSManagedObjectContext/refreshObject:mergeChanges:) calls to see the saved values in other contexts.
 //:
