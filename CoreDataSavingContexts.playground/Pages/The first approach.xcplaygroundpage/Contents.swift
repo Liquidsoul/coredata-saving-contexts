@@ -2,7 +2,7 @@
 //:
 //: The associated playground can be found [in this repo](https://github.com/Liquidsoul/coredata-saving-contexts)!
 //:
-//: ## Introduction
+//: ## The context
 //:
 //: I am quite new at using Core Data.
 //: I have started to use it just a few months back, and I've been using it extensively the last couple of months.
@@ -18,6 +18,7 @@
 //:		+-----------------+
 //:
 //: Here is our context:
+//:
 //:  * we've got a main context that is used by our controllers
 //:  * we want to refresh our data using server requests and store it asynchronously to Core Data (server requests are another topic so we will skip this part)
 
